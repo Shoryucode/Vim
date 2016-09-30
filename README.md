@@ -8,25 +8,14 @@ The software I use to manage plugins is Pathogen.(but you can use anything you l
 
 The plugins used and set up in my .vimrc file are:
 
-- YankRing
-- vim-surround
-- vim-multiple-cursors
-- vim-javascript
-- vim-css3-syntax
-- vim-fugitive
-- vim-colors-solarized
+- delimitmate
+- indentline
 - vim-airline
-- syntastic
-- supertab
-- peaksea
-- omlet
-- indentLine
-- grep
-- emmet
-- delimitMate
-- ctrlsimilar
-- bufexplorer
+- vim-colors-solarized
+- vim-fugitive
+- vim-surround
+- Wombat
 
 You can Add or Remove anything you like.
 
-Source for downloading plugins is: http://vimawesome.com/
+Source for plugins is: http://vimawesome.com/
