@@ -72,7 +72,7 @@ set cursorline
 "Visual autocomplete for command menu
 set wildmenu
 
-"Load filetyoe-specific indent files
+"Load filetype-specific indent files
 filetype indent on
 filetype plugin on
 
@@ -84,9 +84,6 @@ set lazyredraw
 
 "Set how many lines of history gVim has to remember
 set history =666
-
-"Enable highlightning on
-syntax on
 
 "Status Line
 set laststatus=2
@@ -115,23 +112,14 @@ set hid
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "SOLARIZED
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme solarized 
 
 "delimitMate
 let delimitMate_expand_cr = 1
 
-
-
 "indent lines
 let g:indentLine_char = '│'
-
-"better-CSS-syntax
-augroup VimCSS3Syntax
-  autocmd!
-
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
 
 """"""""""""""""""""""""""""""""""""
 " => Take care of indents for Java "
@@ -139,41 +127,6 @@ augroup END
 set si
 "Java anonymous classes. Sometimes, you have to use them.
 set cinoptions+=j1
-
-""""""""""""""""""""""""""""""
-" => JavaScript section
-""""""""""""""""""""""""""""""
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-au FileType javascript setl nocindent
-
-au FileType javascript imap <c-t> $log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
-
-au FileType javascript inoremap <buffer> $r return 
-au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-
-function! JavaScriptFold() 
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
- 
-"concealing characters
-let g:javascript_conceal_function   = "ƒ"
-let g:javascript_conceal_null       = "ø"
-let g:javascript_conceal_this       = "@"
-let g:javascript_conceal_return     = "⇚"
-let g:javascript_conceal_undefined  = "¿"
-let g:javascript_conceal_NaN        = "ℕ"
-let g:javascript_conceal_prototype  = "¶"
-let g:javascript_conceal_static     = "•"
-let g:javascript_conceal_super      = "Ω"
 
 """"""""""""""""""""""""""""""
 " => Python section
@@ -195,9 +148,6 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class 
 au FileType python map <buffer> <leader>D ?def 
 
-"Zen-coding
-let g:user_zen_mode='a'
-
 "bufExplorer
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
@@ -218,32 +168,6 @@ map <c-b> :CtrlPBuffer<cr>
 
 let g:ctrlp_max_height = 20
 
-"Grep-Vim
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
-
-"Nerd-Tree
-let g:NERDTreeWinPos = "right"
-let NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeWinSize=35
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark 
-map <leader>nf :NERDTreeFind<cr>
-
 "Surround-Vim
 vmap Si S(i_<esc>f)
 au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
-
-"Vim-Airline
-let g:airline_theme="luna"
-
-"Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers=['pyflakes']
